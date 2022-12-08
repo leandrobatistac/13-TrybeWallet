@@ -79,11 +79,4 @@ LoginForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (globalState) => {
-  console.log(globalState);
-  return {
-    email: globalState.user.email,
-  };
-};
-
-export default connect(mapStateToProps)(LoginForm);
+export default connect()(LoginForm);
