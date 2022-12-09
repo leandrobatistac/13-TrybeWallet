@@ -7,15 +7,19 @@ class Header extends Component {
     const { user: { email }, wallet: { initialValue } } = this.props;
     return (
       <div>
+
         <span data-testid="email-field">
           { email }
         </span>
+
         <span data-testid="total-field">
           { initialValue }
         </span>
+
         <span data-testid="header-currency-field">
           BRL
         </span>
+
       </div>
     );
   }
