@@ -13,7 +13,8 @@ class Header extends Component {
         </span>
 
         <span data-testid="total-field">
-          { Number(totalValue.toFixed(2)) }
+          { Number(totalValue
+            .toLocaleString('en-IN')).toFixed(2) }
         </span>
 
         <span data-testid="header-currency-field">

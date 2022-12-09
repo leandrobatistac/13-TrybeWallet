@@ -58,7 +58,7 @@ class WalletForm extends Component {
 
     const valorPreenchido = Number(value);
     const conversao = valorPreenchido * exchange[currency].ask;
-    const valorAcumulado = (totalValue + conversao);
+    const valorAcumulado = Number((totalValue + conversao).toFixed(2));
     dispatch(adicionarTotalValue(valorAcumulado));
   };
 
