@@ -1,6 +1,8 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 import WalletForm from '../components/WalletForm';
+import Header from '../components/Header';
+import Table from '../components/Table';
 import { renderWithRouterAndRedux } from './helpers/renderWith';
 
 describe('Verifica se o componente WallerForm', () => {
@@ -38,5 +40,13 @@ describe('Verifica se o componente WallerForm', () => {
     renderWithRouterAndRedux(<WalletForm />);
     const botaoEntrar = screen.getByRole('button', { name: /Adicionar Despesa/i });
     expect(botaoEntrar).toBeInTheDocument();
+  });
+
+  test('Verifica se a página é renderizada corretamente', () => {
+    renderWithRouterAndRedux(<Header />);
+  });
+
+  test('Verifica se a página é renderizada corretamente', () => {
+    renderWithRouterAndRedux(<Table />);
   });
 });
