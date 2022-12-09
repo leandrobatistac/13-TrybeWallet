@@ -57,6 +57,7 @@ class Table extends Component {
                     <td>
                       <button
                         type="button"
+                        data-testid="delete-btn"
                         onClick={ () => this
                           .botaoDeletar(despesa.id, (despesa.value * nomeMoeda.ask)) }
                       >
