@@ -10,7 +10,7 @@ class Table extends Component {
     dispatch(sendExpense(arrayReduzido));
 
     const valorRemover = Number(value);
-    const valorTotal = Number((totalValue - valorRemover).toFixed(2));
+    const valorTotal = (totalValue - valorRemover);
     dispatch(adicionarTotalValue(valorTotal));
   };
 
