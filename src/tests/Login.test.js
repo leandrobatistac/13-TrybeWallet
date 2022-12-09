@@ -23,7 +23,7 @@ describe('Verifica se a Página de Login', () => {
     expect(botaoEntrar).toBeInTheDocument();
   });
 
-  test(' desabilita o botão ao incluir Email errado', () => {
+  test(' desabilita/habilita o botão ao incluir Email/Senha', () => {
     renderWithRouterAndRedux(<Login />);
     const inputEmail = screen.getByTestId('email-input');
     const inputSenha = screen.getByTestId('password-input');
