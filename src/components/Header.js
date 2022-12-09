@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class Header extends Component {
   render() {
-    const { user: { email }, wallet: { initialValue } } = this.props;
+    const { user: { email }, wallet: { totalValue } } = this.props;
     return (
       <div>
 
@@ -13,7 +13,7 @@ class Header extends Component {
         </span>
 
         <span data-testid="total-field">
-          { initialValue }
+          { totalValue }
         </span>
 
         <span data-testid="header-currency-field">
@@ -36,7 +36,7 @@ Header.propTypes = {
   }).isRequired,
 
   wallet: PropTypes.shape({
-    initialValue: PropTypes.number,
+    totalValue: PropTypes.number,
   }).isRequired,
 };
 
