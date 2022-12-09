@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCurrencies, sendExpense, totalValue } from '../redux/actions';
+import { fetchCurrencies, sendExpense, adicionarTotalValue } from '../redux/actions';
 import fetchAPI from '../fetchAPI';
 
 class WalletForm extends Component {
@@ -11,7 +11,6 @@ class WalletForm extends Component {
     currency: 'USD',
     method: 'Dinheiro',
     tag: 'Alimentação',
-    valorTotal: 0,
   };
 
   componentDidMount() {
@@ -24,14 +23,13 @@ class WalletForm extends Component {
   };
 
   handleButton = async () => {
-    const { wallet: { expenses } } = this.props;
+    const { wallet: { expenses, totalValue } } = this.props;
     const {
       value,
       description,
       currency,
       method,
       tag,
-      valorTotal,
     } = this.state;
 
     const { dispatch } = this.props;
@@ -60,9 +58,8 @@ class WalletForm extends Component {
 
     const valorPreenchido = Number(value);
     const conversao = valorPreenchido * exchange[currency].ask;
-    const valorAcumulado = Number((valorTotal + conversao).toFixed(2));
-    dispatch(totalValue(valorAcumulado));
-    this.setState({ valorTotal: valorAcumulado });
+    const valorAcumulado = Number((totalValue + conversao).toFixed(2));
+    dispatch(adicionarTotalValue(valorAcumulado));
   };
 
   render() {
@@ -160,6 +157,7 @@ WalletForm.propTypes = {
   wallet: PropTypes.shape({
     currencies: PropTypes.arrayOf(PropTypes.string),
     expenses: PropTypes.arrayOf(PropTypes.shape()),
+    totalValue: PropTypes.number,
   }).isRequired,
 
   dispatch: PropTypes.func.isRequired,

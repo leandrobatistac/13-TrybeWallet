@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { sendExpense, adicionarTotalValue } from '../redux/actions';
 
 class Table extends Component {
+  botaoDeletar = (id, value) => {
+    const { wallet: { expenses, totalValue }, dispatch } = this.props;
+    const arrayReduzido = expenses.filter((despesa) => despesa.id !== id);
+    dispatch(sendExpense(arrayReduzido));
+
+    const valorRemover = Number(value);
+    const valorTotal = Number((totalValue - valorRemover).toFixed(2));
+    dispatch(adicionarTotalValue(valorTotal));
+  };
+
   render() {
     const { wallet: { expenses } } = this.props;
     const objetoTitulos = [
@@ -44,8 +55,12 @@ class Table extends Component {
                     <td>{ Number(nomeMoeda.ask * despesa.value).toFixed(2) }</td>
                     <td> Real </td>
                     <td>
-                      <button type="button">
-                        Excluir/Alterar
+                      <button
+                        type="button"
+                        onClick={ () => this
+                          .botaoDeletar(despesa.id, (despesa.value * nomeMoeda.ask)) }
+                      >
+                        Excluir
                       </button>
                     </td>
                   </tr>
@@ -67,7 +82,10 @@ const mapStateToProps = (globalState) => ({
 Table.propTypes = {
   wallet: PropTypes.shape({
     expenses: PropTypes.arrayOf(PropTypes.shape()),
+    totalValue: PropTypes.number,
   }).isRequired,
+
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Table);

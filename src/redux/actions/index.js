@@ -54,7 +54,7 @@ export const sendExpense = (expenses) => ({
   },
 });
 
-export const totalValue = (total) => ({
+export const adicionarTotalValue = (total) => ({
   type: TOTAL_VALUE,
   payload: {
     total,
